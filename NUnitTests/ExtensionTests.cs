@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TNT.Commons;
 
-namespace Tests;
+namespace NUnitTests;
 
 [ExcludeFromCodeCoverage]
 public class ExtensionTests
