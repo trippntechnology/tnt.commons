@@ -9,6 +9,8 @@ internal class JsonTestClass
   public int IntExample { get; set; } = 0;
   public string StringExample { get; set; } = "";
 
+  public BaseClass? BaseClassExample { get; set; } = null;
+
   public override bool Equals(object? obj)
   {
     var testObj = obj as JsonTestClass;

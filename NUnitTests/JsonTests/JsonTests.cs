@@ -17,7 +17,8 @@ internal class JsonTests
         new BaseClass(){baseIntProperty = 1, baseStringProperty = "one"},
       },
       IntExample = 27,
-      StringExample = "twenty-seven"
+      StringExample = "twenty-seven",
+      BaseClassExample = new ExtBaseClass1() { baseIntProperty = 2, baseStringProperty = "Two", e1IntProperty = 22, e1StringProperty = "twenty-two" }
     };
     string json = Json.serializeObject(sut);
     var deserializedSut = Json.deserializeJson<JsonTestClass>(json);
