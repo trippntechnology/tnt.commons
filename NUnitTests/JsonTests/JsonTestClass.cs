@@ -9,12 +9,14 @@ internal class JsonTestClass
   public int IntExample { get; set; } = 0;
   public string StringExample { get; set; } = "";
 
+  public MyEnum myEnum { get; set; }
+
   public BaseClass? BaseClassExample { get; set; } = null;
 
   public override bool Equals(object? obj)
   {
     var testObj = obj as JsonTestClass;
     if (testObj == null) return false;
-    return IntExample == testObj.IntExample && StringExample == testObj.StringExample;
+    return IntExample == testObj.IntExample && StringExample == testObj.StringExample && testObj.myEnum == myEnum;
   }
 }
