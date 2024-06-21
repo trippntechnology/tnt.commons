@@ -11,7 +11,8 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+#    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -24,5 +25,5 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-#      run: dotnet test --no-build --verbosity normal
-      run: dotnet test --verbosity normal
+      run: dotnet test --no-build --verbosity normal
+#      run: dotnet test --verbosity normal
