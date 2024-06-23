@@ -17,7 +17,7 @@
 		<SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
 		<TargetFramework>net8.0</TargetFramework>
 		<Title>TNT Commons</Title>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
