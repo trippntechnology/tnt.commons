@@ -1,25 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>1.0.1</Version>
 		<Authors>Tripp'n Technology, LLC.</Authors>
-		<Copyright>Copyright 2024 $(Authors)</Copyright>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<Configurations>Debug;Release;Debug_Nuget_Local</Configurations>
-		<Description>TNT Commons</Description>
 		<Company>$(Authors)</Company>
-		<IncludeSymbols>True</IncludeSymbols>
-		<SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
-		<Title>TNT Commons</Title>
+		<Configurations>Debug;Release;Debug_Nuget_Local</Configurations>
+		<ContinuousIntegrationBuild>True</ContinuousIntegrationBuild>
+		<Copyright>Copyright 2024 $(Authors)</Copyright>
 		<DebugType>embedded</DebugType>
+		<Description>TNT Commons</Description>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<IncludeSymbols>False</IncludeSymbols>
+		<Nullable>enable</Nullable>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
+		<TargetFramework>net8.0</TargetFramework>
+		<Title>TNT Commons</Title>
+		<Version>1.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="docs\readme.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<Target Name="DeplyNugetLocal" AfterTargets="Pack" Condition="$(Configuration) == 'Release'">
