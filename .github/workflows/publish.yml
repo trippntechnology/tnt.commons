@@ -21,6 +21,5 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    # - name: Publish
-    #   run: dotnet test --no-build --verbosity normal
-#      run: dotnet test --verbosity normal
+    - name: Publish
+      run: dotnet nuget push "bin\Debug\TNT.Commons.1.0.1.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source "github"
