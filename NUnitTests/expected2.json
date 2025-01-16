@@ -1,0 +1,55 @@
+{
+	"$type": "NUnitTests.JsonTests.JsonTestClass,NUnitTests",
+	"ListExample": {
+		"$type": "System.Collections.Generic.List`1[[NUnitTests.JsonTests.BaseClass,NUnitTests]],System.Private.CoreLib",
+		"$values": [
+			{
+				"$type": "NUnitTests.JsonTests.ExtExtBaseClass1,NUnitTests",
+				"MyLong": 333,
+				"myEnum": 2,
+				"e1IntProperty": 33,
+				"e1StringProperty": "thirty-three",
+				"baseIntProperty": 3,
+				"baseStringProperty": "three",
+				"parts": {
+					"$type": "System.Collections.Generic.List`1[[NUnitTests.JsonTests.Part,NUnitTests]],System.Private.CoreLib",
+					"$values": []
+				}
+			},
+			{
+				"$type": "NUnitTests.JsonTests.ExtBaseClass1,NUnitTests",
+				"e1IntProperty": 22,
+				"e1StringProperty": "twenty-two",
+				"baseIntProperty": 2,
+				"baseStringProperty": "Two",
+				"parts": {
+					"$type": "System.Collections.Generic.List`1[[NUnitTests.JsonTests.Part,NUnitTests]],System.Private.CoreLib",
+					"$values": []
+				}
+			},
+			{
+				"$type": "NUnitTests.JsonTests.BaseClass,NUnitTests",
+				"baseIntProperty": 1,
+				"baseStringProperty": "one",
+				"parts": {
+					"$type": "System.Collections.Generic.List`1[[NUnitTests.JsonTests.Part,NUnitTests]],System.Private.CoreLib",
+					"$values": []
+				}
+			}
+		]
+	},
+	"IntExample": 27,
+	"StringExample": "twenty-seven",
+	"myEnum": 0,
+	"BaseClassExample": {
+		"$type": "NUnitTests.JsonTests.ExtBaseClass1,NUnitTests",
+		"e1IntProperty": 22,
+		"e1StringProperty": "twenty-two",
+		"baseIntProperty": 2,
+		"baseStringProperty": "Two",
+		"parts": {
+			"$type": "System.Collections.Generic.List`1[[NUnitTests.JsonTests.Part,NUnitTests]],System.Private.CoreLib",
+			"$values": []
+		}
+	}
+}

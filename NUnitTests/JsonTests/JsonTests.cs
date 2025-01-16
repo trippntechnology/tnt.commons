@@ -7,6 +7,16 @@ namespace NUnitTests.JsonTests;
 [ExcludeFromCodeCoverage]
 internal class JsonTests
 {
+  private string EXPECTED_JSON1 = "";
+  private string EXPECTED_JSON2 = "";
+
+  [SetUp]
+  public void Setup()
+  {
+    EXPECTED_JSON1 = File.ReadAllText("expected1.json").Replace("\t", "").Replace(" ", "");
+    EXPECTED_JSON2 = File.ReadAllText("expected2.json").Replace("\t", "").Replace(" ", "");
+  }
+
   [Test]
   public void Json_serialize_deserialize()
   {
@@ -28,54 +38,12 @@ internal class JsonTests
       TypeNameHandling = TypeNameHandling.All,
     };
 
-    string json1 = Json.serializeObject(sut, settings);
+    string json1 = Json.serializeObject(sut, settings).Replace(" ", "");
     Assert.That(json1, Is.EqualTo(EXPECTED_JSON1));
-    string json2 = Json.serializeObject(sut);
+    string json2 = Json.serializeObject(sut, settings).Replace(" ", "");
     Assert.That(json2, Is.EqualTo(EXPECTED_JSON2));
     var deserializedSut = Json.deserializeJson<JsonTestClass>(json2, settings);
     Assert.That(deserializedSut, Is.EqualTo(sut));
     Assert.That(deserializedSut.ListExample, Is.EqualTo(sut.ListExample));
   }
-
-  private const string EXPECTED_JSON1 = @"{
-  ""$type"": ""NUnitTests.JsonTests.JsonTestClass, NUnitTests"",
-  ""ListExample"": {
-    ""$type"": ""System.Collections.Generic.List`1[[NUnitTests.JsonTests.BaseClass, NUnitTests]], System.Private.CoreLib"",
-    ""$values"": [
-      {
-        ""$type"": ""NUnitTests.JsonTests.ExtExtBaseClass1, NUnitTests"",
-        ""MyLong"": 333,
-        ""myEnum"": 2,
-        ""e1IntProperty"": 33,
-        ""e1StringProperty"": ""thirty-three"",
-        ""baseIntProperty"": 3,
-        ""baseStringProperty"": ""three""
-      },
-      {
-        ""$type"": ""NUnitTests.JsonTests.ExtBaseClass1, NUnitTests"",
-        ""e1IntProperty"": 22,
-        ""e1StringProperty"": ""twenty-two"",
-        ""baseIntProperty"": 2,
-        ""baseStringProperty"": ""Two""
-      },
-      {
-        ""$type"": ""NUnitTests.JsonTests.BaseClass, NUnitTests"",
-        ""baseIntProperty"": 1,
-        ""baseStringProperty"": ""one""
-      }
-    ]
-  },
-  ""IntExample"": 27,
-  ""StringExample"": ""twenty-seven"",
-  ""myEnum"": 0,
-  ""BaseClassExample"": {
-    ""$type"": ""NUnitTests.JsonTests.ExtBaseClass1, NUnitTests"",
-    ""e1IntProperty"": 22,
-    ""e1StringProperty"": ""twenty-two"",
-    ""baseIntProperty"": 2,
-    ""baseStringProperty"": ""Two""
-  }
-}";
-
-  private const string EXPECTED_JSON2 = @"{""$type"":""NUnitTests.JsonTests.JsonTestClass, NUnitTests"",""ListExample"":{""$type"":""System.Collections.Generic.List`1[[NUnitTests.JsonTests.BaseClass, NUnitTests]], System.Private.CoreLib"",""$values"":[{""$type"":""NUnitTests.JsonTests.ExtExtBaseClass1, NUnitTests"",""MyLong"":333,""myEnum"":2,""e1IntProperty"":33,""e1StringProperty"":""thirty-three"",""baseIntProperty"":3,""baseStringProperty"":""three""},{""$type"":""NUnitTests.JsonTests.ExtBaseClass1, NUnitTests"",""e1IntProperty"":22,""e1StringProperty"":""twenty-two"",""baseIntProperty"":2,""baseStringProperty"":""Two""},{""$type"":""NUnitTests.JsonTests.BaseClass, NUnitTests"",""baseIntProperty"":1,""baseStringProperty"":""one""}]},""IntExample"":27,""StringExample"":""twenty-seven"",""myEnum"":0,""BaseClassExample"":{""$type"":""NUnitTests.JsonTests.ExtBaseClass1, NUnitTests"",""e1IntProperty"":22,""e1StringProperty"":""twenty-two"",""baseIntProperty"":2,""baseStringProperty"":""Two""}}";
 }
