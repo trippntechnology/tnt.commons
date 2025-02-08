@@ -1,5 +1,8 @@
-﻿namespace NUnitTests.JsonTests;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace NUnitTests.JsonTests;
+
+[ExcludeFromCodeCoverage]
 public class Part
 {
   public int id { get; set; }

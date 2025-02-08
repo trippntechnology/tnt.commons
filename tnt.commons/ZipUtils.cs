@@ -65,4 +65,30 @@ public static class ZipUtils
 
     return content;
   }
+
+  /// <summary>
+  /// Arcives <paramref name="archiveFileName"/>
+  /// </summary>
+  /// <exception cref="FileNotFoundException">Thrown if a file included in <paramref name="archiveFileName"/> can not be found</exception>
+  public static void ArchiveFiles(string[] filesToArchive, string archiveFileName)
+  {
+    // 1. Create the zip archive:
+    using (FileStream zipFile = File.Create(archiveFileName))
+    using (ZipArchive archive = new ZipArchive(zipFile, ZipArchiveMode.Create))
+    {
+      // 2. Add each file to the archive:
+      foreach (string file in filesToArchive)
+      {
+        if (File.Exists(file)) // Check if file exists
+        {
+          string entryName = Path.GetFileName(file); // Get the file name for the entry
+          archive.CreateEntryFromFile(file, entryName);
+        }
+        else
+        {
+          throw new FileNotFoundException($"File not found: {file}");
+        }
+      }
+    }
+  }
 }
