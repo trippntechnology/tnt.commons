@@ -62,8 +62,8 @@ public class ExtensionTests
   [Test]
   public void Extensions_RunNotNull_BothNotNull()
   {
-    var v1 = "Test1";
-    var v2 = "Test2";
+    string? v1 = "Test1";
+    string? v2 = "Test2";
     var callbackInvoked = false;
 
     Extensions.RunNotNull(v1, v2, (param1, param2) =>
@@ -80,7 +80,7 @@ public class ExtensionTests
   public void Extensions_RunNotNull_FirstNull()
   {
     string? v1 = null;
-    var v2 = "Test2";
+    string? v2 = "Test2";
     var callbackInvoked = false;
 
     Extensions.RunNotNull(v1, v2, (param1, param2) =>
@@ -94,7 +94,7 @@ public class ExtensionTests
   [Test]
   public void Extensions_RunNotNull_SecondNull()
   {
-    var v1 = "Test1";
+    string? v1 = "Test1";
     string? v2 = null;
     var callbackInvoked = false;
 
@@ -124,9 +124,9 @@ public class ExtensionTests
   [Test]
   public void Extensions_RunNotNull_ThreeParams_AllNotNull()
   {
-    var v1 = "Test1";
-    var v2 = "Test2";
-    var v3 = "Test3";
+    string? v1 = "Test1";
+    string? v2 = "Test2";
+    string? v3 = "Test3";
     var callbackInvoked = false;
 
     Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
@@ -144,8 +144,8 @@ public class ExtensionTests
   public void Extensions_RunNotNull_ThreeParams_FirstNull()
   {
     string? v1 = null;
-    var v2 = "Test2";
-    var v3 = "Test3";
+    string? v2 = "Test2";
+    string? v3 = "Test3";
     var callbackInvoked = false;
 
     Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
@@ -159,9 +159,9 @@ public class ExtensionTests
   [Test]
   public void Extensions_RunNotNull_ThreeParams_SecondNull()
   {
-    var v1 = "Test1";
+    string? v1 = "Test1";
     string? v2 = null;
-    var v3 = "Test3";
+    string? v3 = "Test3";
     var callbackInvoked = false;
 
     Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
@@ -175,8 +175,8 @@ public class ExtensionTests
   [Test]
   public void Extensions_RunNotNull_ThreeParams_ThirdNull()
   {
-    var v1 = "Test1";
-    var v2 = "Test2";
+    string? v1 = "Test1";
+    string? v2 = "Test2";
     string? v3 = null;
     var callbackInvoked = false;
 
