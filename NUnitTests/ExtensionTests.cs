@@ -9,7 +9,7 @@ public class ExtensionTests
   [Test]
   public void Extensions_Let()
   {
-    var result = new FooExtension() { Value = 7 }.let(it =>
+    var result = new FooExtension() { Value = 7 }.Let(it =>
     {
       it.Value = 10;
       return 20;
@@ -22,7 +22,7 @@ public class ExtensionTests
   public void Extensions_Null_Let()
   {
     FooExtension? fooExt = null;
-    var result = fooExt?.let(it => 7) ?? 11;
+    var result = fooExt?.Let(it => 7) ?? 11;
 
     Assert.That(result, Is.EqualTo(11));
   }
@@ -30,7 +30,7 @@ public class ExtensionTests
   [Test]
   public void Extensions_Also()
   {
-    var result = new FooExtension() { Value = 7 }.also(it =>
+    var result = new FooExtension() { Value = 7 }.Also(it =>
    {
      it.Value = 10;
    });
@@ -44,19 +44,164 @@ public class ExtensionTests
     FooExtension value = new BarExtension();
     var success = false;
 
-    value.whenType<FooExtension, BarExtension>(d =>
+    value.WhenType<FooExtension, BarExtension>(d =>
     {
       success = true;
     });
 
     Assert.That(success, Is.True, "whenType failed to cast to type");
 
-    value.whenType<FooExtension, FormatException>(d =>
+    value.WhenType<FooExtension, FormatException>(d =>
     {
       success = false;
     });
 
     Assert.That(success, Is.True);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_BothNotNull()
+  {
+    var v1 = "Test1";
+    var v2 = "Test2";
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, (param1, param2) =>
+    {
+      callbackInvoked = true;
+      Assert.That(param1, Is.EqualTo(v1));
+      Assert.That(param2, Is.EqualTo(v2));
+    });
+
+    Assert.That(callbackInvoked, Is.True);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_FirstNull()
+  {
+    string? v1 = null;
+    var v2 = "Test2";
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, (param1, param2) =>
+    {
+      callbackInvoked = true;
+    });
+
+    Assert.That(callbackInvoked, Is.False);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_SecondNull()
+  {
+    var v1 = "Test1";
+    string? v2 = null;
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, (param1, param2) =>
+    {
+      callbackInvoked = true;
+    });
+
+    Assert.That(callbackInvoked, Is.False);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_BothNull()
+  {
+    string? v1 = null;
+    string? v2 = null;
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, (param1, param2) =>
+    {
+      callbackInvoked = true;
+    });
+
+    Assert.That(callbackInvoked, Is.False);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_ThreeParams_AllNotNull()
+  {
+    var v1 = "Test1";
+    var v2 = "Test2";
+    var v3 = "Test3";
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
+    {
+      callbackInvoked = true;
+      Assert.That(param1, Is.EqualTo(v1));
+      Assert.That(param2, Is.EqualTo(v2));
+      Assert.That(param3, Is.EqualTo(v3));
+    });
+
+    Assert.That(callbackInvoked, Is.True);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_ThreeParams_FirstNull()
+  {
+    string? v1 = null;
+    var v2 = "Test2";
+    var v3 = "Test3";
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
+    {
+      callbackInvoked = true;
+    });
+
+    Assert.That(callbackInvoked, Is.False);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_ThreeParams_SecondNull()
+  {
+    var v1 = "Test1";
+    string? v2 = null;
+    var v3 = "Test3";
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
+    {
+      callbackInvoked = true;
+    });
+
+    Assert.That(callbackInvoked, Is.False);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_ThreeParams_ThirdNull()
+  {
+    var v1 = "Test1";
+    var v2 = "Test2";
+    string? v3 = null;
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
+    {
+      callbackInvoked = true;
+    });
+
+    Assert.That(callbackInvoked, Is.False);
+  }
+
+  [Test]
+  public void Extensions_RunNotNull_ThreeParams_AllNull()
+  {
+    string? v1 = null;
+    string? v2 = null;
+    string? v3 = null;
+    var callbackInvoked = false;
+
+    Extensions.RunNotNull(v1, v2, v3, (param1, param2, param3) =>
+    {
+      callbackInvoked = true;
+    });
+
+    Assert.That(callbackInvoked, Is.False);
   }
 }
 
