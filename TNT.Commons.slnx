@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NUnitTests/NUnitTests.csproj" />
+  <Project Path="tnt.commons/TNT.Commons.csproj" />
+</Solution>
