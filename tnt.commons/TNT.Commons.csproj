@@ -13,6 +13,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IncludeSymbols>False</IncludeSymbols>
 		<Nullable>enable</Nullable>
+		<PackageId>TNT.Commons</PackageId>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
 		<TargetFramework>net9.0</TargetFramework>
