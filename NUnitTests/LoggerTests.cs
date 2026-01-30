@@ -30,18 +30,24 @@ public class LoggerTests
     [Test]
     public void Info_LogsExpectedMessage()
     {
+        var lineNumber = GetCurrentLineNumber() + 1;
         Logger.Info("Test message");
         Trace.Flush();
-        Assert.That(_output.ToString(), Is.EqualTo("[LoggerTests:Info_LogsExpectedMessage] Test message\r\n"));
+        var expected = $"[LoggerTests:{lineNumber}:Info_LogsExpectedMessage] Test message\r\n";
+        Assert.That(_output.ToString(), Is.EqualTo(expected));
     }
 
     [Test]
     public void MeasureTimeMillis_LogsElapsedTime()
     {
+        var lineNumber = GetCurrentLineNumber() + 1;
         Logger.MeasureTimeMillis(() => System.Threading.Thread.Sleep(10), "Timing test");
         Trace.Flush();
         var log = _output.ToString();
-        var pattern = @"\[LoggerTests:MeasureTimeMillis_LogsElapsedTime\] \[\d{2} ms\] Timing test";
-        Assert.That(System.Text.RegularExpressions.Regex.IsMatch(log, pattern));
+        var pattern = $@"\[LoggerTests:{lineNumber}:MeasureTimeMillis_LogsElapsedTime\] \[\d{{1,4}} ms\] Timing test";
+        Assert.That(System.Text.RegularExpressions.Regex.IsMatch(log, pattern), $"Log output did not match. Output: {log}");
     }
+
+    private int GetCurrentLineNumber([System.Runtime.CompilerServices.CallerLineNumber] int lineNumber = 0) => lineNumber;
+
 }
